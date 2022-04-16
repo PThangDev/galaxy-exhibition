@@ -1,0 +1,220 @@
+.welcome {
+  @include flex(center, center);
+
+  margin: auto;
+  z-index: 5;
+
+  &-box {
+    @include flex(center, center);
+    position: relative;
+    width: 774px;
+    height: 774px;
+  }
+  &.delay {
+    animation-delay: $duration;
+  }
+  &.show {
+    .welcome-box {
+      animation: animateZoom $duration forwards;
+    }
+    .welcome {
+      &-square {
+        &--largest {
+          animation: animateRotateLargest $duration forwards;
+        }
+        &--smaller {
+          animation: animateRotateSmaller $duration forwards;
+        }
+        &--smallest {
+          animation: animateRotateSmallest $duration forwards;
+        }
+      }
+      &-content {
+        animation: animateFadeZoom $duration forwards;
+      }
+    }
+  }
+  &.hide {
+    .welcome-box {
+      animation: animateZoomOut $duration forwards;
+    }
+    .welcome {
+      &-content {
+        animation: animateFade $duration forwards reverse;
+      }
+    }
+    &.reverse {
+      .welcome-box {
+        animation: animateZoomOut $duration forwards reverse;
+      }
+      .welcome {
+        &-content {
+          animation: animateFadeZoom $duration forwards;
+        }
+        &-square {
+          &--largest {
+            animation-direction: reverse;
+          }
+          &--smaller {
+            animation-direction: reverse;
+          }
+          &--smallest {
+            animation-direction: reverse;
+          }
+        }
+      }
+    }
+  }
+  &.reverse {
+    .welcome-box {
+      animation: animateZoom $duration forwards reverse;
+    }
+    .welcome {
+      &-content {
+        animation: animateFadeZoom $duration forwards reverse;
+      }
+      &-square {
+        &--largest {
+          animation-direction: reverse;
+        }
+        &--smaller {
+          animation-direction: reverse;
+        }
+        &--smallest {
+          animation-direction: reverse;
+        }
+      }
+    }
+  }
+
+  &-square {
+    border: 1px dashed rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    position: absolute;
+    .square-child {
+      position: absolute;
+      &--top {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &--bottom {
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &--smaller {
+        width: 20px;
+        height: 20px;
+      }
+      &--smallest {
+        width: 15px;
+        height: 15px;
+      }
+    }
+    &--largest {
+      $size-largest: 774px;
+      width: $size-largest;
+      height: $size-largest;
+      @include flex(center, center);
+      transform: rotate(-30deg);
+    }
+    &--smaller {
+      $size: 588px;
+      width: $size;
+      height: $size;
+      @include flex(center, center);
+      border: 1px dashed rgba(255, 255, 255, 0.5);
+      transform: rotate(0deg);
+      position: absolute;
+      transform: rotate(-45deg);
+    }
+    &--smallest {
+      $size: 428px;
+      width: $size;
+      height: $size;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      position: absolute;
+      transform: rotate(15deg);
+    }
+  }
+  &-content {
+    // @include flex(center, center);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    line-height: calc(72px / 60px);
+    text-align: center;
+    font-weight: 700;
+  }
+}
+@keyframes animateRotateLargest {
+  0% {
+    transform: rotate(-60deg);
+  }
+  100% {
+    transform: rotate(-30deg);
+  }
+}
+@keyframes animateRotateSmaller {
+  0% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+@keyframes animateRotateSmallest {
+  0% {
+    transform: rotate(-35deg);
+  }
+  100% {
+    transform: rotate(15deg);
+  }
+}
+@keyframes animateZoom {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes animateZoomOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+@keyframes animateFade {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes animateFadeZoom {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

@@ -1,0 +1,122 @@
+[
+    {
+       "name": "Atropos Assault",
+       "image": "ship/atropos/atropos-assault.png",
+       "tribe": {
+          "name": "atropos",
+          "image": "tribe/icon-tribe-atropos.svg"
+       }
+    },
+    {
+       "name": "Atropos Cruise",
+       "image": "ship/atropos/atropos-battleship.png",
+       "tribe": {
+          "name": "atropos",
+          "image": "tribe/icon-tribe-atropos.svg"
+       }
+    },
+    {
+       "name": "Atropos Destroyer",
+       "image": "ship/atropos/atropos-cruise.png",
+       "tribe": {
+          "name": "atropos",
+          "image": "tribe/icon-tribe-atropos.svg"
+       }
+    },
+    {
+       "name": "Atropos G.O",
+       "image": "ship/atropos/atropos-destroyer.png",
+       "tribe": {
+          "name": "atropos",
+          "image": "tribe/icon-tribe-atropos.svg"
+       }
+    },
+    {
+       "name": "Atropos Battleship",
+       "image": "ship/atropos/atropos-G_O.png",
+       "tribe": {
+          "name": "atropos",
+          "image": "tribe/icon-tribe-atropos.svg"
+       }
+    },
+    {
+       "name": "Lachesis Assault",
+       "image": "ship/lachesis/lachesis-assault.png",
+       "tribe": {
+          "name": "lachesis",
+          "image": "tribe/icon-tribe-lachesis.svg"
+       }
+    },
+    {
+       "name": "Lachesis Cruise",
+       "image": "ship/lachesis/lachesis-battleship.png",
+       "tribe": {
+          "name": "lachesis",
+          "image": "tribe/icon-tribe-lachesis.svg"
+       }
+    },
+    {
+       "name": "Lachesis Destroyer",
+       "image": "ship/lachesis/lachesis-cruise.png",
+       "tribe": {
+          "name": "lachesis",
+          "image": "tribe/icon-tribe-lachesis.svg"
+       }
+    },
+    {
+       "name": "Lachesis G.O",
+       "image": "ship/lachesis/lachesis-destroyer.png",
+       "tribe": {
+          "name": "lachesis",
+          "image": "tribe/icon-tribe-lachesis.svg"
+       }
+    },
+    {
+       "name": "Lachesis Battleship",
+       "image": "ship/lachesis/lachesis-god.png",
+       "tribe": {
+          "name": "lachesis",
+          "image": "tribe/icon-tribe-lachesis.svg"
+       }
+    },
+    {
+       "name": "Morta Assault",
+       "image": "ship/morta/morta-assault.png",
+       "tribe": {
+          "name": "morta",
+          "image": "tribe/icon-tribe-morta.svg"
+       }
+    },
+    {
+       "name": "Morta Cruise",
+       "image": "ship/morta/morta-battleship.png",
+       "tribe": {
+          "name": "morta",
+          "image": "tribe/icon-tribe-morta.svg"
+       }
+    },
+    {
+       "name": "Morta Destroyer",
+       "image": "ship/morta/morta-cruise.png",
+       "tribe": {
+          "name": "morta",
+          "image": "tribe/icon-tribe-morta.svg"
+       }
+    },
+    {
+       "name": "Morta G.O",
+       "image": "ship/morta/morta-destroyer.png",
+       "tribe": {
+          "name": "morta",
+          "image": "tribe/icon-tribe-morta.svg"
+       }
+    },
+    {
+       "name": "Morta Battleship",
+       "image": "ship/morta/morta-god.png",
+       "tribe": {
+          "name": "morta",
+          "image": "tribe/icon-tribe-morta.svg"
+       }
+    }
+ ]

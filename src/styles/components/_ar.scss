@@ -1,0 +1,109 @@
+.ar {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   z-index: 200;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(253.28deg, #052365 0.64%, #141522 61.26%);
+  .icon-box {
+    $size: 43px;
+    width: $size;
+    height: $size;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(135deg);
+    cursor: pointer;
+    @include flex(center, center);
+    img {
+      transform: rotate(-135deg);
+    }
+  }
+  &-container {
+    @include flex(center, center, column);
+    width: 575px;
+    height: 100%;
+    margin: 0 auto;
+    &--full {
+      width: 100%;
+      align-items: center;
+    }
+  }
+  &-content {
+    width: 455px;
+    margin-bottom: 28px;
+  }
+  &__heading {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: calc(29px / 24px);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    &--primary {
+      @include flex(center);
+      margin-bottom: 51px;
+      .ar__heading-icon {
+        margin-right: 9px;
+      }
+    }
+  }
+  &__title {
+    line-height: calc(19.2px / 16px);
+    margin-bottom: 23px;
+  }
+  &-qr {
+    @include flex(stretch);
+    margin-bottom: 17px;
+    &-item {
+      margin-right: 23px;
+      &-image {
+        background: #082157;
+      }
+      &-info {
+        background: #02143d;
+        @include flex(center, center);
+        padding: 7px;
+        .qr-icon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  &-note {
+    &-item {
+      @include flex(center);
+      margin-bottom: 11px;
+    }
+    &-number {
+      $size: 24px;
+      width: $size;
+      height: $size;
+      margin-right: 11px;
+      @include flex(flex-start, center);
+      background: #082157;
+      flex-shrink: 0;
+    }
+    &-text {
+      line-height: cacl(19.2px / 16px);
+    }
+  }
+  &-button {
+    align-self: flex-end;
+    &--close {
+      background: #ffc918;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #202020;
+    }
+  }
+  &-image {
+    &__sub {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 100px;
+    }
+  }
+}

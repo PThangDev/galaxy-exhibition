@@ -1,0 +1,83 @@
+@import "./normalize";
+@import "./fonts";
+@import "variables";
+@import "./mixins";
+@import "./components/header";
+@import "./components/section";
+@import "./components/intro";
+@import "./components/welcome";
+@import "./components/galaxy";
+@import "./components/ar";
+@import "./components/info-scan";
+@import "./components/custom-modal";
+@import "./components/button-scroll";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(253.28deg, #052365 0.64%, #141522 61.26%);
+  overflow: hidden !important;
+  color: #ffffff;
+  font-family: "Barlow";
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  // overflow-y: auto;
+  &-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &-spacer {
+    height: 105%;
+  }
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 10px 48px;
+  font-weight: 700;
+  font-size: 16px;
+  display: inline-block;
+  &:focus {
+    outline: none;
+  }
+  &--primary {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: #082157;
+    color: white;
+  }
+  &--outline {
+    background: url("../assets/img/background-button.png"),
+      rgba(255, 255, 255, 0.2);
+    background-size: 100% 100%, cover;
+    font-size: 24px;
+    color: white;
+  }
+}
