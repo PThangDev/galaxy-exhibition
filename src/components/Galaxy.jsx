@@ -17,7 +17,7 @@ import galaxyData from "../assets/galaxy.json";
 
 gsap.registerPlugin(MotionPathPlugin, CSSRulePlugin, CustomEase, Draggable);
 
-const SPEED = 15;
+const SPEED = 25;
 const dragDistancePerRotation = 2000;
 const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
   const ellipseRef = useRef(null);
@@ -87,6 +87,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
           },
         })
         .progress(index / elements.length);
+      // gsapElement.pause();
       rotate.push(gsapElement);
     });
 

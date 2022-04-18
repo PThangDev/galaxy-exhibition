@@ -6,8 +6,14 @@ import QRFacebook from "../assets/img/ar/qr-facebook.png";
 import QRInstagram from "../assets/img/ar/qr-instagram.png";
 import Modal from "react-modal";
 import InfoScan from "./InfoScan";
+import classNames from "classnames";
 
-const AR = ({ onCloseModal, onChangeModal }) => {
+const AR = ({
+  onCloseModal,
+  onChangeModal,
+  className = "",
+  primary = true,
+}) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const handleCloseModal = () => {
     onCloseModal();
@@ -17,12 +23,33 @@ const AR = ({ onCloseModal, onChangeModal }) => {
     // setIsOpenModal();
     onChangeModal();
   };
+  const renderButton = () => {
+    if (primary) {
+      return (
+        <button
+          className="button button--primary ar-button"
+          onClick={handleShowModal}
+        >
+          Continue
+        </button>
+      );
+    } else {
+      return (
+        <button
+          class="button button--primary ar-button ar-button--close"
+          onClick={handleCloseModal}
+        >
+          Close
+        </button>
+      );
+    }
+  };
   return (
     <>
       <Modal isOpen={isOpenModal} className="Modal" overlayClassName="Overlay">
         <InfoScan />
       </Modal>
-      <div className="ar">
+      <div className={classNames("ar", { "ar--sub": !primary })}>
         <p className="icon-box" onClick={handleCloseModal}>
           <img src={IconClose} alt="" className="icon icon--close" />
         </p>
@@ -89,14 +116,7 @@ const AR = ({ onCloseModal, onChangeModal }) => {
               </li>
             </ul>
           </div>
-          <div className="ar-button">
-            <button
-              className="button button--primary ar-button"
-              onClick={handleShowModal}
-            >
-              Continue
-            </button>
-          </div>
+          <div className="ar-button">{renderButton()}</div>
         </div>
       </div>
     </>

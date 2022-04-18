@@ -50,10 +50,13 @@
     font-weight: 700;
     line-height: calc(29px / 24px);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    cursor: pointer;
+    img {
+      margin-right: 10px;
+    }
     &--primary {
       @include flex(center);
-      margin-bottom: 51px;
+      margin-bottom: 50px;
       .info-scan__heading-icon {
         margin-right: 9px;
       }
