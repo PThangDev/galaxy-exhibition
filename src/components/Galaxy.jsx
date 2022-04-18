@@ -66,7 +66,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
           motionPath: {
             path: DeepRef("#path")[0],
             align: DeepRef("#path")[0],
-            alignOrigin: [0.5, 1.2],
+            alignOrigin: [0.5, 0.5],
             fromCurrent: true,
           },
           transformOrigin: "50% 50%",
@@ -145,6 +145,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
   const handleChangeTribe = (tribe) => {
     setFilter(tribe);
   };
+
   return (
     <>
       <Modal

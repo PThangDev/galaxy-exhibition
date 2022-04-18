@@ -2,7 +2,6 @@ import React from "react";
 import IconClose from "../assets/img/ar/icon-close.svg";
 import IconInfo from "../assets/img/ar/icon-info.svg";
 const InfoScan = ({ ship, onCloseModal }) => {
-  console.log(ship);
   const handleCloseModal = () => {
     onCloseModal();
   };

@@ -21,7 +21,6 @@ const Home = () => {
       if (indexSection === 0) return;
       setIsScrollUp(true);
       setIndexSection(indexSection - 1);
-      // setIsIntro(true);
       setIsScrolling(true);
     } else if (e.deltaY >= 0) {
       //Scroll down
@@ -32,42 +31,34 @@ const Home = () => {
       setIsScrolling(true);
     }
   };
-  // console.log(indexSection, isScrolling);
   useEffect(() => {
-    let timeoutId;
-    if (indexSection === 0) {
-      timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
+      if (indexSection === 0) {
         setIsScrolling(false);
         setIsIntro(true);
         setIsWelcome(false);
-        // setIsWelcome(true);
-      }, ANIMATION_DURATION);
-    }
-    if (indexSection === 1) {
-      if (isScrollUp) {
-        timeoutId = setTimeout(() => {
-          setIsIntro(false);
-          setIsScrolling(false);
-          setIsWelcome(true);
-        }, ANIMATION_DURATION);
-      } else {
-        timeoutId = setTimeout(() => {
-          setIsIntro(false);
-          setIsScrolling(false);
-          setIsWelcome(true);
-        }, ANIMATION_DURATION);
       }
-    }
-    if (indexSection === 2) {
-      if (isScrollUp) {
-      } else {
-        timeoutId = setTimeout(() => {
+      if (indexSection === 1) {
+        if (isScrollUp) {
+          setIsIntro(false);
+          setIsScrolling(false);
+          setIsWelcome(true);
+        } else {
+          setIsIntro(false);
+          setIsScrolling(false);
+          setIsWelcome(true);
+        }
+      }
+      if (indexSection === 2) {
+        if (isScrollUp) {
+        } else {
           setIsIntro(false);
           setIsScrolling(false);
           setIsWelcome(false);
-        }, ANIMATION_DURATION);
+        }
       }
-    }
+    }, ANIMATION_DURATION);
+
     return () => {
       clearTimeout(timeoutId);
     };
