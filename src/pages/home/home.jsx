@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import IconScroll from "../../assets/img/icon-scroll.png";
 import Galaxy from "../../components/Galaxy";
 import Intro from "../../components/Intro";
@@ -14,23 +14,31 @@ const Home = () => {
   const [isIntro, setIsIntro] = useState(true);
   const [isWelcome, setIsWelcome] = useState(false);
   const [isScrollUp, setIsScrollUp] = useState(false);
+  const lastScrollTop = useRef(0);
+  const handleScrollUp = () => {
+    if (isScrolling) return;
+    if (indexSection === 0) return;
+    setIsScrollUp(true);
+    setIndexSection(indexSection - 1);
+    setIsScrolling(true);
+  };
+  const handleScrollDown = () => {
+    if (isScrolling) return;
+    if (indexSection === 2) return;
+    setIsScrollUp(false);
+    setIndexSection(indexSection + 1);
+    setIsScrolling(true);
+  };
   const handleScroll = (e) => {
     if (e.deltaY < 0) {
       //Scroll up
-      if (isScrolling) return;
-      if (indexSection === 0) return;
-      setIsScrollUp(true);
-      setIndexSection(indexSection - 1);
-      setIsScrolling(true);
+      handleScrollUp();
     } else if (e.deltaY >= 0) {
       //Scroll down
-      if (isScrolling) return;
-      if (indexSection === 2) return;
-      setIsScrollUp(false);
-      setIndexSection(indexSection + 1);
-      setIsScrolling(true);
+      handleScrollDown();
     }
   };
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (indexSection === 0) {
@@ -67,8 +75,27 @@ const Home = () => {
   const handleToggleScrollStatus = useCallback((status) => {
     setIsScrolling(!status);
   }, []);
+  const handleTouchStart = (e) => {
+    if (!e.touches) return;
+    lastScrollTop.current = e.touches[0].clientY;
+  };
+  const handleTouchEnd = (e) => {
+    if (!e.changedTouches) return;
+    const clientY = e.changedTouches[0].clientY;
+    if (lastScrollTop.current > clientY + 5) {
+      //Scroll up
+      handleScrollUp();
+    } else if (lastScrollTop.current < clientY - 5) {
+      handleScrollDown();
+    }
+  };
   return (
-    <div className="home" onWheel={handleScroll}>
+    <div
+      className="home"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onWheel={handleScroll}
+    >
       <Intro
         key={Date.now() + "intro"}
         className={classNames({
