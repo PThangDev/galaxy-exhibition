@@ -14,21 +14,24 @@ const Home = () => {
   const [isIntro, setIsIntro] = useState(true);
   const [isWelcome, setIsWelcome] = useState(false);
   const [isScrollUp, setIsScrollUp] = useState(false);
+  const [isDraggingSlide, setIsDraggingSlide] = useState(false);
   const lastScrollTop = useRef(0);
-  const handleScrollUp = () => {
+  const handleScrollUp = useCallback(() => {
     if (isScrolling) return;
     if (indexSection === 0) return;
+
     setIsScrollUp(true);
     setIndexSection(indexSection - 1);
     setIsScrolling(true);
-  };
-  const handleScrollDown = () => {
+  }, [indexSection, isScrolling]);
+  const handleScrollDown = useCallback(() => {
     if (isScrolling) return;
     if (indexSection === 2) return;
+
     setIsScrollUp(false);
     setIndexSection(indexSection + 1);
     setIsScrolling(true);
-  };
+  }, [indexSection, isScrolling]);
   const handleScroll = (e) => {
     if (e.deltaY < 0) {
       //Scroll up
@@ -75,20 +78,36 @@ const Home = () => {
   const handleToggleScrollStatus = useCallback((status) => {
     setIsScrolling(!status);
   }, []);
-  const handleTouchStart = (e) => {
+  const handleTouchStart = useCallback((e) => {
     if (!e.touches) return;
     lastScrollTop.current = e.touches[0].clientY;
-  };
-  const handleTouchEnd = (e) => {
-    if (!e.changedTouches) return;
-    const clientY = e.changedTouches[0].clientY;
-    if (lastScrollTop.current > clientY + 5) {
-      handleScrollDown();
-    } else if (lastScrollTop.current < clientY - 5) {
-      //Scroll up
-      handleScrollUp();
-    }
-  };
+  }, []);
+  const handleTouchEnd = useCallback(
+    (e) => {
+      if (!e.changedTouches) return;
+      if (isDraggingSlide) return;
+      const clientY = e.changedTouches[0].clientY;
+      if (lastScrollTop.current > clientY + 5) {
+        handleScrollDown();
+      } else if (lastScrollTop.current < clientY - 5) {
+        //Scroll up
+        handleScrollUp();
+      }
+    },
+    [handleScrollDown, handleScrollUp, isDraggingSlide]
+  );
+  // useEffect(() => {
+  //   window.addEventListener("touchstart", handleTouchStart);
+  //   window.addEventListener("touchend", handleTouchEnd);
+  //   return () => {
+  //     window.removeEventListener("touchstart", handleTouchStart, null);
+  //     window.removeEventListener("touchend", handleTouchEnd, null);
+  //   };
+  // }, [handleTouchEnd, handleTouchStart]);
+  const onDragSlide = useCallback((status) => {
+    // console.log("drag");
+    setIsDraggingSlide(status);
+  }, []);
   return (
     <div
       className="home"
@@ -118,6 +137,7 @@ const Home = () => {
       )}
       {!isWelcome && !isIntro && (
         <Galaxy
+          onDragSlide={onDragSlide}
           className={classNames({
             hide: indexSection === 1 && isScrollUp,
             show: indexSection === 2 && !isScrollUp,

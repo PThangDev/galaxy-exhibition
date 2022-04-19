@@ -19,7 +19,7 @@ gsap.registerPlugin(MotionPathPlugin, CSSRulePlugin, CustomEase, Draggable);
 
 const SPEED = 25;
 const dragDistancePerRotation = 2000;
-const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
+const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
   const ellipseRef = useRef(null);
   const [tribe] = useState([
     {
@@ -108,6 +108,11 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
       onDrag: updateRotation,
       onThrowUpdate: updateRotation,
       onRelease() {
+        setTimeout(() => {
+          if (typeof onDragSlide === "function") {
+            onDragSlide(false);
+          }
+        }, 500);
         if (!this.tween || !this.tween.isActive()) {
           gsap.to(rotate, { timeScale: 1, duration: 1 });
         }
@@ -118,6 +123,9 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
     });
 
     function updateRotation() {
+      if (typeof onDragSlide === "function") {
+        onDragSlide(true);
+      }
       rotate.map((ele, index) => {
         let p =
           startProgress[index] +
