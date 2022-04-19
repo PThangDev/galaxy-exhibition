@@ -43,6 +43,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
   const [ship, setShip] = useState();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isActiveModal, setIsActiveModal] = useState(false);
+  const gsapElementRef = useRef([]);
 
   const DeepRef = gsap.utils.selector(ellipseRef);
   const [elements, ref] = useArrayRef(null);
@@ -90,7 +91,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
       // gsapElement.pause();
       rotate.push(gsapElement);
     });
-
+    gsapElementRef.current = rotate;
     Draggable.create(proxy, {
       trigger: ".slide",
       type: "x", // we only care about movement on the x-axis.
@@ -117,13 +118,20 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
     });
 
     function updateRotation() {
-      rotate.map((ele, idx) => {
+      rotate.map((ele, index) => {
         let p =
-          startProgress[idx] + (this.startX - this.x) / dragDistancePerRotation;
+          startProgress[index] +
+          (this.startX - this.x) / dragDistancePerRotation;
         ele.progress(progressWrap(p));
       });
     }
   }, [DeepRef, elements, filter]);
+
+  useEffect(() => {
+    if (className === "hide") {
+      gsapElementRef.current.forEach((item) => item.pause());
+    }
+  }, [className]);
 
   if (!isGalaxy) return null;
 
@@ -176,7 +184,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll }) => {
         {/* <div className="galaxy-scrollbar">
           <p className="galaxy-scrollbar__progress"></p>
         </div> */}
-        <div className="slides" key={Date.now()}>
+        <div className="slides" key={Date.now() + "galaxy"}>
           <div className="slides-box" ref={ellipseRef}>
             {data
               .filter(

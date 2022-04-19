@@ -42,8 +42,10 @@ const InfoScan = ({ ship, onCloseModal }) => {
               alt=""
               className="info-scan-image__img"
             />
-            <p className="info-scan-line"></p>
-            <p className="info-scan-image__sub">Scan me</p>
+            <div className="info-scan-image__sub">
+              <p></p>
+              <span>Scan me</span>
+            </div>
           </div>
         </div>
       </div>

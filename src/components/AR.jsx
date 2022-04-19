@@ -36,7 +36,7 @@ const AR = ({
     } else {
       return (
         <button
-          class="button button--primary ar-button ar-button--close"
+          className="button button--primary ar-button ar-button--close"
           onClick={handleCloseModal}
         >
           Close

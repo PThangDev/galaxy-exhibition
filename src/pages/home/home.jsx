@@ -5,7 +5,7 @@ import Galaxy from "../../components/Galaxy";
 import Intro from "../../components/Intro";
 import Welcome from "../../components/Welcome";
 
-const ANIMATION_DURATION = 1000;
+const ANIMATION_DURATION = 1200;
 
 const Home = () => {
   // const scrollCont = useRef<HTMLDivElement>(null);
@@ -83,10 +83,10 @@ const Home = () => {
     if (!e.changedTouches) return;
     const clientY = e.changedTouches[0].clientY;
     if (lastScrollTop.current > clientY + 5) {
+      handleScrollDown();
+    } else if (lastScrollTop.current < clientY - 5) {
       //Scroll up
       handleScrollUp();
-    } else if (lastScrollTop.current < clientY - 5) {
-      handleScrollDown();
     }
   };
   return (

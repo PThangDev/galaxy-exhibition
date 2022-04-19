@@ -37,3 +37,13 @@
     visibility: visible;
   }
 }
+@media screen and (max-width: 575px) {
+  .intro {
+    &-title {
+      line-height: calc(57px / 16px);
+      span {
+        display: block;
+      }
+    }
+  }
+}

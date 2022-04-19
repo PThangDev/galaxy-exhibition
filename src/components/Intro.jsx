@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/img/logo.png";
 import line from "../assets/img/line.png";
 import classNames from "classnames";
+import LineMobile from "../assets/img/line-svg-mobile.svg";
 
 const Intro = ({ className, isIntro }) => {
   if (!isIntro) return null;
@@ -11,7 +12,10 @@ const Intro = ({ className, isIntro }) => {
     >
       <img src={logo} alt="" className="intro-logo" />
       <img src={line} className="intro-line" alt="" />
-      <p className="intro-title">The Great Galatic War on Avalanche</p>
+      <p className="intro-title">
+        The Great Galatic <span></span> War on Avalanche
+      </p>
+      {/* <img src={LineMobile} alt="" /> */}
     </section>
   );
 };
