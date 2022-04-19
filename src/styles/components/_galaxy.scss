@@ -6,9 +6,9 @@
     }
   }
   &.hide {
-   .slides {
-    animation: animateFadeIn $duration forwards reverse;
-   }
+    .slides {
+      animation: animateFadeIn $duration forwards reverse;
+    }
   }
   &-scrollbar {
     $size: 10px;

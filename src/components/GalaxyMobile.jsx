@@ -5,10 +5,11 @@ import {
   CustomEase,
   Draggable,
   MotionPathPlugin,
+  Linear,
 } from "gsap/all";
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
-import { ReactComponent as Elipse } from "../assets/img/Ellipse.svg";
+import { ReactComponent as Elipse } from "../assets/img/line-svg-mobile.svg";
 import IconLine from "../assets/img/galaxy/icon-line.svg";
 import useArrayRef from "../hooks/useArrayRef";
 import AR from "./AR";
@@ -17,9 +18,9 @@ import galaxyData from "../assets/galaxy.json";
 
 gsap.registerPlugin(MotionPathPlugin, CSSRulePlugin, CustomEase, Draggable);
 
-const SPEED = 25;
+const SPEED = 10;
 const dragDistancePerRotation = 2000;
-const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
+const GalaxyMobile = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
   const timeoutRef = useRef(null);
   const ellipseRef = useRef(null);
   const [tribe] = useState([
@@ -73,6 +74,11 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
         .to(ele, {
           duration: SPEED,
           motionPath: {
+            // path: [
+            //   { x: 0, y: 0, z: 0 },
+            //   { x: 0, y: 500, z: 1 },
+            //   { x: 0, y: 0, z: 1 },
+            // ],
             path: DeepRef("#path")[0],
             align: DeepRef("#path")[0],
             alignOrigin: [0.5, 0.5],
@@ -80,29 +86,41 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
           },
           transformOrigin: "50% 50%",
           repeat: -1,
+          // ease: Linear.easeNone,
           ease: CustomEase.create(
             "custom",
-            "M0,0 C0.15,0.18333 0.27,0.36 0.45,0.55 0.63333,0.7 0.81667,0.85 1,1 "
+            "M0,0 C0.15,0.18333 0.3,0.36667 0.45,0.55 0.63333,0.7 0.81667,0.85 1,1 "
           ),
           keyframes: {
-            "0%": { scale: 0.75, zIndex: 3 },
-            "15%": { zIndex: 4 },
-            "25%": { scale: 1 },
-            "40%": { zIndex: 3 },
-            "50%": { scale: 0.75, zIndex: 2 },
-            "60%": { scale: 0.5, zIndex: 1 },
-            "88%": { scale: 0.4, zIndex: 1 },
-            "100%": { scale: 0.75, zIndex: 2 },
+            // "0%": { scale: 0.75, zIndex: 3, opacity: 0.5, background: "red" },
+            // "50%": { scale: 1, zIndex: 5, opacity: 1, background: "green" },
+            // "100%": {
+            //   scale: 0.75,
+            //   zIndex: 3,
+            //   opacity: 0.5,
+            //   background: "green",
+            // },
+            "0%": { scale: 0.75, zIndex: 3, background: "red" },
+            "20%": { scale: 0.75, zIndex: 3, background: "purple" },
+            // "15%": { zIndex: 4, background: "blue" },
+            // "25%": { scale: 1, background: "green" },
+            "40%": { scale: 1, zIndex: 4, background: "blue" },
+            "60%": { scale: 1, zIndex: 4, background: "grey" },
+            "80%": { scale: 1, zIndex: 4, background: "orange" },
+            // "50%": { scale: 0.75, zIndex: 2 },
+            //"60%": { scale: 0.75, zIndex: 1 },
+            // "88%": { scale: 0.4, zIndex: 1 },
+            "100%": { scale: 0.75, zIndex: 2, background: "yellow" },
           },
         })
         .progress(index / elements.length);
-      // gsapElement.pause();
+      gsapElement.pause();
       rotate.push(gsapElement);
     });
     gsapElementRef.current = rotate;
     Draggable.create(proxy, {
       trigger: ".slide",
-      type: "x", // we only care about movement on the x-axis.
+      type: "y", // we only care about movement on the x-axis.
       inertia: true,
       allowNativeTouchScrolling: true,
       onPress() {
@@ -137,7 +155,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
       rotate.map((ele, index) => {
         let p =
           startProgress[index] +
-          (this.startX - this.x) / dragDistancePerRotation;
+          (this.startY - this.y) / dragDistancePerRotation;
         ele.progress(progressWrap(p));
       });
     }
@@ -192,7 +210,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
         {/* <InfoScan /> */}
       </Modal>
       <div
-        className={classNames("section section--3 galaxy", {
+        className={classNames("section section--3 galaxy galaxy--mobile", {
           [className]: className,
         })}
         ref={galaxyRef}
@@ -206,6 +224,7 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
               .filter(
                 (item) => item.tribe.name.toLowerCase() === filter.toLowerCase()
               )
+              // .filter((item, index) => index < 1)
               .map((item, index) => (
                 <div
                   key={`${item.name}-${index}`}
@@ -213,6 +232,8 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
                   ref={ref}
                   onClick={() => handleShowModal(item)}
                 >
+                  <span style={{ color: "green" }}>{index}</span>
+
                   <div className="slide-content">
                     <img
                       className="slide__image"
@@ -261,4 +282,4 @@ const Galaxy = ({ className, isGalaxy, onToggleScroll, onDragSlide }) => {
   );
 };
 
-export default React.memo(Galaxy);
+export default React.memo(GalaxyMobile);

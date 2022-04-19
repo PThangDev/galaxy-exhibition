@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import IconScroll from "../../assets/img/icon-scroll.png";
 import Galaxy from "../../components/Galaxy";
+import GalaxyMobile from "../../components/GalaxyMobile";
 import Intro from "../../components/Intro";
 import Welcome from "../../components/Welcome";
 
@@ -96,16 +97,8 @@ const Home = () => {
     },
     [handleScrollDown, handleScrollUp, isDraggingSlide]
   );
-  // useEffect(() => {
-  //   window.addEventListener("touchstart", handleTouchStart);
-  //   window.addEventListener("touchend", handleTouchEnd);
-  //   return () => {
-  //     window.removeEventListener("touchstart", handleTouchStart, null);
-  //     window.removeEventListener("touchend", handleTouchEnd, null);
-  //   };
-  // }, [handleTouchEnd, handleTouchStart]);
+
   const onDragSlide = useCallback((status) => {
-    // console.log("drag");
     setIsDraggingSlide(status);
   }, []);
   return (
@@ -115,7 +108,7 @@ const Home = () => {
       onTouchEnd={handleTouchEnd}
       onWheel={handleScroll}
     >
-      <Intro
+      {/* <Intro
         key={Date.now() + "intro"}
         className={classNames({
           "hide reverse": indexSection === 1 && !isScrollUp,
@@ -134,8 +127,8 @@ const Home = () => {
           })}
           isWelcome={isWelcome}
         />
-      )}
-      {!isWelcome && !isIntro && (
+      )} */}
+      {/* {!isWelcome && !isIntro && (
         <Galaxy
           onDragSlide={onDragSlide}
           className={classNames({
@@ -145,7 +138,9 @@ const Home = () => {
           isGalaxy={!isWelcome || !isIntro}
           onToggleScroll={handleToggleScrollStatus}
         />
-      )}
+      )} */}
+      {/* <GalaxyMobile isGalaxy={true} /> */}
+      {/* {!isWelcome && !isIntro && } */}
       <div className="button-scroll">
         <img src={IconScroll} alt="" className="button-scroll-image" />
       </div>
