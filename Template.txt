@@ -1,0 +1,4 @@
+-- handle modal ==> Done
+-- Responsive ==> Done
+-- Section 3 in mobile
+-- Logic onScroll 

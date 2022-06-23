@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "lachesis",
+        "image": "tribe/icon-tribe-lachesis.svg"
+    },
+    {
+        "id": 2,
+        "name": "morta",
+        "image": "tribe/icon-tribe-morta.svg"
+    },
+    {
+        "id": 3,
+        "name": "atropos",
+        "image": "tribe/icon-tribe-atropos.svg"
+    }
+]
