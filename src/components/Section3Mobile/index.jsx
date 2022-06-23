@@ -324,6 +324,8 @@ const TribeList = styled.ul`
   @media screen and (${({ theme }) => theme.breakpoint.md}) {
     right: 50%;
     transform: translateX(50%);
+    bottom: 20px;
+    padding-top: 20px;
   }
 `;
 const TribeItem = styled.li`
@@ -338,7 +340,9 @@ const TribeItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 40px;
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
   &.active {
     background-color: hsla(0, 0%, 100%, 0.5);
   }
@@ -347,6 +351,10 @@ const TribeItem = styled.li`
   }
   & > img {
     transform: rotate(-45deg);
+  }
+  @media screen and (${({ theme }) => theme.breakpoint.md}) {
+    width: 35px;
+    height: 35px;
   }
 `;
 const SlideContent = styled.div`

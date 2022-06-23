@@ -308,6 +308,13 @@ const TribeList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+
+  @media screen and (${({ theme }) => theme.breakpoint.md}) {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 20px;
+    padding-top: 20px;
+  }
 `;
 const TribeItem = styled.li`
   list-style: none;
@@ -330,6 +337,11 @@ const TribeItem = styled.li`
   }
   & > img {
     transform: rotate(-45deg);
+  }
+
+  @media screen and (${({ theme }) => theme.breakpoint.md}) {
+    width: 35px;
+    height: 35px;
   }
 `;
 const SlideContent = styled.div`
